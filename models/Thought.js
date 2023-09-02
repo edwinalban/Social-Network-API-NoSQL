@@ -1,5 +1,6 @@
 // Imports Schema and model from mongoose
 const { Schema, model } = require('mongoose');
+const reactionSchema = require('./Reaction');
 
 // Creates thought Schema
 const thoughtSchema = new Schema(
@@ -23,12 +24,7 @@ const thoughtSchema = new Schema(
             required: true,
         },
         // Sets reactions SchemaType and references reaction Schema
-        reactions: [
-            {
-                type: Schema.Types.ObjectId,
-                ref: 'reaction'
-            }
-        ]
+        reactions: [reactionSchema]
     },
     {
         // Sets up JSON virtuals

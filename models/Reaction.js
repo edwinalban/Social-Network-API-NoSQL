@@ -1,11 +1,11 @@
 // Imports Schema from mongoose
-const { Schema } = require('mongoose')
+const { Schema, Types } = require('mongoose')
 
 const reactionSchema = new Schema(
     {
         reactionId: {
             type: Schema.Types.ObjectId,
-            default: new ObjectId
+            default: new Types.ObjectId
         },
         reactionBody: {
             type: String,

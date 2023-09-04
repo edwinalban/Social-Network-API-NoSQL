@@ -1,5 +1,8 @@
+// imports express router
 const router = require('express').Router();
 
+// imports getThoughts, getSingleThought, createThought, updateThought, deleteThought
+// functions from thoughtControllers.js
 const {
     getThoughts,
     getSingleThought,
@@ -8,6 +11,7 @@ const {
     deleteThought,
 } = require('../../controllers/thoughtControllers');
 
+// imports addReaction/deleteReaction functions from reactionControllers.js
 const {
     addReaction,
     deleteReaction
@@ -25,4 +29,5 @@ router.route('/:thoughtId/reactions').post(addReaction);
 // /api/thoughts/:thoughtId/reactions/:reactionId
 router.route('/:thoughtId/reactions/:reactionId').delete(deleteReaction);
 
+// exports router to be used by routes/index.js
 module.exports = router;

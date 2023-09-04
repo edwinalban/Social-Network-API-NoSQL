@@ -1,33 +1,33 @@
-// Imports Schema and model from mongoose
+// imports Schema and model from mongoose and reactionSchema from Reaction.js
 const { Schema, model } = require('mongoose');
 const reactionSchema = require('./Reaction');
 
-// Creates thought Schema
+// creates thought Schema
 const thoughtSchema = new Schema(
     {
-        // Sets thoughtText SchemaType and validators
+        // sets thoughtText SchemaType and validators
         thoughtText: {
             type: String,
             required: true,
             minLength: 1,
             maxLength: 280
         },
-        // Sets createdAt SchemaType
+        // sets createdAt SchemaType
         createdAt: {
             type: Date,
             default: Date.now,
             // add getter method to format timestamp on query
         },
-        // Sets username SchemaType
+        // sets username SchemaType
         username: {
             type: String,
             required: true,
         },
-        // Sets reactions SchemaType and references reaction Schema
+        // sets reactions SchemaType and references reaction Schema
         reactions: [reactionSchema]
     },
     {
-        // Sets up JSON virtuals
+        // sets up JSON virtuals
         toJSON: {
             virtuals: true,
         },
@@ -35,15 +35,15 @@ const thoughtSchema = new Schema(
     }
 );
 
-// Calls virtual to get number of reactions per Thought instance
+// calls virtual to get number of reactions per Thought instance
 thoughtSchema
     .virtual('reactionCount')
     .get(function () {
         return this.reactions.length;
     })
 
-// Sets thoughtSchema as a model
+// sets thoughtSchema as a model
 const Thought = model('thought', thoughtSchema);
 
-// Exports Thought model to be imported by models/index.js
+// exports Thought model to be imported by models/index.js
 module.exports = Thought;

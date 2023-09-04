@@ -1,5 +1,6 @@
-// imports Schema and Types from mongoose
-const { Schema, Types } = require('mongoose')
+// imports Schema/Types from mongoose and formatDate function from utils/formatDate.js
+const { Schema, Types } = require('mongoose');
+const formatDate = require('../utils/formatDate');
 
 // creates reactionSchema Schema
 const reactionSchema = new Schema(
@@ -20,12 +21,19 @@ const reactionSchema = new Schema(
             type: String,
             required: true
         },
-        // sets createdAt SchemaType
+        // sets createdAt SchemaType/formats date
         createdAt: {
             type: Date,
             default: Date.now,
-            // get: (date) => formatDate(date)
+            get: (date) => formatDate(date)
         }
+    },
+    {
+        // sets up JSON getters
+        toJSON: {
+            getters: true
+        },
+        id: false
     }
 );
 

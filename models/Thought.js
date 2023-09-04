@@ -1,6 +1,8 @@
-// imports Schema and model from mongoose and reactionSchema from Reaction.js
+// imports Schema/model from mongoose, reactionSchema from Reaction.js, and formatDate
+// function from utils/formatDate.js
 const { Schema, model } = require('mongoose');
 const reactionSchema = require('./Reaction');
+const formatDate = require('../utils/formatDate');
 
 // creates thought Schema
 const thoughtSchema = new Schema(
@@ -12,16 +14,16 @@ const thoughtSchema = new Schema(
             minLength: 1,
             maxLength: 280
         },
-        // sets createdAt SchemaType
+        // sets createdAt SchemaType/formats date
         createdAt: {
             type: Date,
             default: Date.now,
-            // add getter method to format timestamp on query
+            get: (date) => formatDate(date)
         },
         // sets username SchemaType
         username: {
             type: String,
-            required: true,
+            required: true
         },
         // sets reactions SchemaType and references reaction Schema
         reactions: [reactionSchema]
@@ -29,7 +31,8 @@ const thoughtSchema = new Schema(
     {
         // sets up JSON virtuals
         toJSON: {
-            virtuals: true,
+            getters: true,
+            virtuals: true
         },
         id: false
     }
@@ -40,7 +43,7 @@ thoughtSchema
     .virtual('reactionCount')
     .get(function () {
         return this.reactions.length;
-    })
+    });
 
 // sets thoughtSchema as a model
 const Thought = model('thought', thoughtSchema);

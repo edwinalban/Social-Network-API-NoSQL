@@ -76,7 +76,7 @@ module.exports = {
                 return req.status(404).json({ message: 'No user with that ID' });
             }
 
-            let friend = req.params.friendId;
+            const friend = req.params.friendId;
             user.friends.push(friend)
             user.save();
             res.json({ message: 'Friend added!' });
@@ -94,7 +94,7 @@ module.exports = {
                 return req.status(404).json({ message: 'No user with that ID' });
             }
 
-            let friend = req.params.friendId;
+            const friend = req.params.friendId;
             user.friends.remove(friend);
             user.save();
             res.json({ message: 'Friend deleted!' });

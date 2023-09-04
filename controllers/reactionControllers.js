@@ -30,7 +30,7 @@ module.exports = {
             }
 
             const reaction = req.params.reactionId;
-            thought.reactions.remove(reaction);
+            thought.reactions.pull({reactionId: reaction});
             thought.save()
             res.json({message: 'Reaction deleted!'})
 

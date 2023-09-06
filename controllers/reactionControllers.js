@@ -4,9 +4,11 @@ const { Thought, reactionSchema } = require('../models');
 
 // exports addReaction/deleteReaction functions
 module.exports = {
+
     // adds reaction to Thought model instance
     async addReaction(req, res) {
         try {
+            
             // finds Thought by thoughtID in request parameters
             // adds reaction request body to array in Thought instance
             // returns updated Thought instance
@@ -31,7 +33,8 @@ module.exports = {
     // removes reaction from Thought model instance
     async deleteReaction(req, res) {
         try {
-            // finds Thought by thoughtId in request parameters
+
+            // finds Thought by request parameters thoughtId
             const thought = await Thought.findOne({ _id: req.params.thoughtId })
 
             // if no Thought found, returns error message

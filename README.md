@@ -15,11 +15,13 @@ I built this project in order to practice using NoSQL databases and queries to v
 
 ## Installation
 
-You will need to install Node.js, Express.js, MongoDB, and Mongoose in order to use this app. You will also need to download Insomnia, or Postman in order to test the routes for functionality.
+You will need to install Node.js, Express.js, Day.js, MongoDB, and Mongoose in order to use this app. You will also need to download Insomnia, or Postman in order to test the routes for functionality.
 
 Instructions for installating Node.js can be found here: https://coding-boot-camp.github.io/full-stack/nodejs/how-to-install-nodejs 
 
 Express.js can be installed by typing "npm install express" into the terminal command line.
+
+Day.js can be installed by typing "npm install dayjs" into the terminal command line.
 
 Instructions for installing MongoDB can be found here: https://www.mongodb.com/docs/manual/installation/
 
